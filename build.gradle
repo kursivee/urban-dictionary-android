@@ -2,6 +2,9 @@
 buildscript {
     ext.kotlin_version = "1.3.72"
     ext.ktlint_gradle_version = "9.3.0"
+    ext.arrow_version = "0.10.5"
+    ext.coroutines_test_version = "1.3.8"
+    ext.mock_version = "1.10.0"
     repositories {
         google()
         jcenter()
