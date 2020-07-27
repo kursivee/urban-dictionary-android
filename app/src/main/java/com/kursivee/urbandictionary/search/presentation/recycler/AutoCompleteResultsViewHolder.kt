@@ -11,7 +11,8 @@ class AutoCompleteResultsViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(autoCompleteResult: AutoCompleteResult) {
         val result = SpannableStringBuilder()
-            .bold { autoCompleteResult.term }
+            .bold { append(autoCompleteResult.term) }
+            .append(" - ")
             .append(autoCompleteResult.preview)
         binding.tvAutocompleteResult.text = result
     }
