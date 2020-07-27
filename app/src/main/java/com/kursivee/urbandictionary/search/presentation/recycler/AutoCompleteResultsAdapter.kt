@@ -6,9 +6,7 @@ import androidx.recyclerview.widget.ListAdapter
 import com.kursivee.urbandictionary.databinding.AutoCompleteResultItemBinding
 import com.kursivee.urbandictionary.search.domain.entity.AutoCompleteResult
 
-class AutoCompleteResultsAdapter(
-    private val list: MutableList<AutoCompleteResult>
-) : ListAdapter<AutoCompleteResult, AutoCompleteResultsViewHolder>(
+class AutoCompleteResultsAdapter : ListAdapter<AutoCompleteResult, AutoCompleteResultsViewHolder>(
     AutoCompleteResultsDiffCallback
 ) {
     override fun onCreateViewHolder(
@@ -20,6 +18,6 @@ class AutoCompleteResultsAdapter(
     }
 
     override fun onBindViewHolder(holder: AutoCompleteResultsViewHolder, position: Int) {
-        holder.bind(list[position])
+        holder.bind(getItem(position))
     }
 }
