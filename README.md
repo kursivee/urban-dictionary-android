@@ -8,6 +8,7 @@ Utilizes urban dictionary API to lookup word definitions
 - [Recycler View](https://developer.android.com/reference/kotlin/androidx/recyclerview/widget/RecyclerView) - Displays lists of elements
 - [Diff Util](https://developer.android.com/reference/androidx/recyclerview/widget/DiffUtil) - Utility class that effeciently calculates differences between two lists
 - [Spannable String Builder](https://developer.android.com/reference/android/text/SpannableStringBuilder) - Convenience builder for spannable
+- [Search View](https://developer.android.com/training/search/setup) - Adds search interface in app bar
 
 ### Networking
 - [Retrofit](https://square.github.io/retrofit/) - Rest Client

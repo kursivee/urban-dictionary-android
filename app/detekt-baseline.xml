@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues></ManuallySuppressedIssues>
+  <CurrentIssues>
+    <ID>ComplexCondition:MainActivity.kt$MainActivity$focusedView != null &amp;&amp; (ev.action == MotionEvent.ACTION_UP || ev.action == MotionEvent.ACTION_MOVE) &amp;&amp; focusedView is EditText &amp;&amp; !focusedView.javaClass.name.startsWith("android.webkit.")</ID>
+    <ID>ComplexCondition:MainActivity.kt$MainActivity$x &lt; focusedView.getLeft() || x &gt; focusedView.getRight() || y &lt; focusedView.getTop() || y &gt; focusedView.getBottom()</ID>
+    <ID>MagicNumber:MockViewModel.kt$MockViewModel$30</ID>
+    <ID>MaxLineLength:MockViewModel.kt$MockViewModel$mutableState.value = state.value?.copy(autoCompleteResults = list.subList(0, (Math.random() * list.size).toInt()))</ID>
+  </CurrentIssues>
+</SmellBaseline>
