@@ -45,9 +45,15 @@ dependencies {
     testImplementation 'junit:junit:4.13'
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test_version"
     testImplementation "io.mockk:mockk:$mock_version"
+    testImplementation "com.squareup.okhttp3:mockwebserver:$ok_http_version"
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     // arrow-kt
     implementation "io.arrow-kt:arrow-core:$arrow_version"
+
+    // network
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.okhttp3:okhttp:$ok_http_version"
+    implementation "com.squareup.retrofit2:converter-moshi:$moshi_converter_version"
 }

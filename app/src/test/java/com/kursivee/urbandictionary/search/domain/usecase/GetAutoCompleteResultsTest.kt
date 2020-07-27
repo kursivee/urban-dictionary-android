@@ -57,14 +57,10 @@ class GetAutoCompleteResultsTest {
         val result = getAutoCompleteResults("valid string")
 
         assertTrue(result.isSuccess())
-        result.fold(
-            {
-                fail()
-            },
-            { list ->
-                assertTrue(list.containsAll(mockData))
-            }
-        )
+        result.map { list ->
+            assertTrue(list.containsAll(mockData))
+        }
+        Unit
     }
 
     @Test
