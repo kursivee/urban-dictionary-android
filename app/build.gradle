@@ -46,6 +46,7 @@ dependencies {
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test_version"
     testImplementation "io.mockk:mockk:$mock_version"
     testImplementation "com.squareup.okhttp3:mockwebserver:$ok_http_version"
+    testImplementation "androidx.arch.core:core-testing:$core_testing"
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
