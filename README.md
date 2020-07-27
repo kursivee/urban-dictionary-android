@@ -2,6 +2,13 @@
 Utilizes urban dictionary API to lookup word definitions
 
 ## Technology
+### Presentation
+- [View Binding](https://developer.android.com/topic/libraries/view-binding) - generates binding classes which hold reference to XML id'd elements
+- [List Adapter](https://developer.android.com/reference/kotlin/androidx/recyclerview/widget/ListAdapter) - Convenience wrapper that provides default behavior for item access and counting
+- [Recycler View](https://developer.android.com/reference/kotlin/androidx/recyclerview/widget/RecyclerView) - Displays lists of elements
+- [Diff Util](https://developer.android.com/reference/androidx/recyclerview/widget/DiffUtil) - Utility class that effeciently calculates differences between two lists
+- [Spannable String Builder](https://developer.android.com/reference/android/text/SpannableStringBuilder) - Convenience builder for spannable
+
 ### Networking
 - [Retrofit](https://square.github.io/retrofit/) - Rest Client
 - [okHttp](https://github.com/square/okhttp) - HTTP Client

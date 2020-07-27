@@ -23,7 +23,9 @@ class AutoCompleteMappersTest {
                 )
             )
         )
-        assertEquals(response.toNetworkResponse(), Either.success(listOf(AutoCompleteResult(preview, term))))
+        val networkResponse = response.toNetworkResponse() as Either.Right
+        val uuid = networkResponse.b[0].id
+        assertEquals(networkResponse, Either.success(listOf(AutoCompleteResult(preview, term, uuid))))
     }
 
     @Test
