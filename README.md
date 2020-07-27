@@ -15,12 +15,17 @@ Utilizes urban dictionary API to lookup word definitions
 - [okHttp](https://github.com/square/okhttp) - HTTP Client
 - [moshi converter](https://github.com/square/retrofit/tree/master/retrofit-converters/moshi) - JSON Serialization library used for retrofit
 
+### Utility
+- [arrow-kt](https://github.com/arrow-kt/arrow) - Functional companion to kotlin std lib. But only using it for Either :D
+
 ### Code Analysis
 - [ktlint](https://github.com/pinterest/ktlint) - kotlin linter
 - [ktlint-gradle](https://github.com/jlleitschuh/ktlint-gradle) - gradle plugin that provides ktlint tasks
 - [detekt](https://github.com/detekt/detekt) - code analysis tool
 
 Run with `./gradlew check`
+
+Auto ktlint with `./gradlew ktlintFormat`
 
 ### Testing
 - [Junit](https://junit.org/junit4/) - unit testing library
