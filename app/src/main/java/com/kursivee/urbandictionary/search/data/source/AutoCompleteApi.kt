@@ -6,6 +6,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface AutoCompleteApi {
-    @GET("/autocomplete-extra")
+    @GET("/v0/autocomplete-extra")
     suspend fun getAutoCompleteResults(@Query("term") input: String): Response<GetAutoCompleteResultsResponse>
 }

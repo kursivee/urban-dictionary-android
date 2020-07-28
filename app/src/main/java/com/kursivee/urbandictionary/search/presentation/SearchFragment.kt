@@ -27,10 +27,10 @@ class SearchFragment : Fragment() {
     companion object {
         fun newInstance() =
             SearchFragment()
-        private const val DEBOUNCE_DELAY = 600L
+        private const val DEBOUNCE_DELAY = 500L
     }
 
-    private val viewModel: MockViewModel by viewModels()
+    private val vm: SearchViewModel by viewModels()
     private lateinit var autoCompleteResultsAdapter: AutoCompleteResultsAdapter
 
     private var nullableBinding: SearchFragmentBinding? = null
@@ -50,24 +50,36 @@ class SearchFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         binding.rvAutocomplete.init()
-        viewModel.get()
-        viewModel.state.observe(
-            viewLifecycleOwner,
-            Observer { state ->
-                autoCompleteResultsAdapter.submitList(state.autoCompleteResults)
-            }
-        )
+        vm.state.observe(viewLifecycleOwner, Observer(::render))
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.options_menu, menu)
-        val item = menu.findItem(R.id.search_menu)
-        val searchView = item.actionView as SearchView
-        val onQueryTextChange = debounce<String>(DEBOUNCE_DELAY, viewLifecycleOwner.lifecycleScope) {
-            viewModel.get()
+        (menu.findItem(R.id.search_menu).actionView as SearchView).init()
+    }
+
+    override fun onDestroy() {
+        nullableBinding = null
+        super.onDestroy()
+    }
+
+    private fun RecyclerView.init() {
+        autoCompleteResultsAdapter = AutoCompleteResultsAdapter()
+        adapter = autoCompleteResultsAdapter
+        layoutManager = LinearLayoutManager(requireContext())
+        addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
+    }
+
+    private fun SearchView.init() {
+        val onQueryTextChange = debounce<String>(DEBOUNCE_DELAY, viewLifecycleOwner.lifecycleScope) { input, job ->
+            if (input.isBlank()) {
+                job.cancel()
+                return@debounce
+            }
+            vm.getAutoCompleteResults(input)
         }
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 Toast.makeText(requireContext(), query ?: "", Toast.LENGTH_SHORT).show()
                 return true
@@ -81,15 +93,7 @@ class SearchFragment : Fragment() {
         })
     }
 
-    override fun onDestroy() {
-        nullableBinding = null
-        super.onDestroy()
-    }
-
-    private fun RecyclerView.init() {
-        autoCompleteResultsAdapter = AutoCompleteResultsAdapter()
-        adapter = autoCompleteResultsAdapter
-        layoutManager = LinearLayoutManager(requireContext())
-        addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
+    private fun render(state: SearchState) {
+        autoCompleteResultsAdapter.submitList(state.autoCompleteResults)
     }
 }

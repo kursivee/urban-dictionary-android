@@ -15,7 +15,7 @@ import java.io.File
 class AutoCompleteApiTest {
 
     private val mockWebServer = MockWebServer()
-    private val retrofit = HttpClientProvider.provideRetrofit(mockWebServer.url("/"))
+    private val retrofit = HttpClientProvider.provideRetrofit(mockWebServer.url("/").toString())
     private lateinit var autoCompleteApi: AutoCompleteApi
 
     @Before
@@ -37,7 +37,7 @@ class AutoCompleteApiTest {
         val response = autoCompleteApi.getAutoCompleteResults("aw")
         val request = mockWebServer.takeRequest()
         assertEquals("GET", request.method)
-        assertEquals("/autocomplete-extra?term=aw", request.path)
+        assertEquals("/v0/autocomplete-extra?term=aw", request.path)
         val expectedResponse = GetAutoCompleteResultsResponse(listOf(AutoComplete("a", "b")))
         assertEquals(expectedResponse, response.body())
     }

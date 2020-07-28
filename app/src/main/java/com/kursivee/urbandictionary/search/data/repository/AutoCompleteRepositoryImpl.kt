@@ -5,8 +5,9 @@ import com.kursivee.urbandictionary.search.data.mapper.toNetworkResponse
 import com.kursivee.urbandictionary.search.data.source.AutoCompleteRemoteSource
 import com.kursivee.urbandictionary.search.domain.entity.AutoCompleteResult
 import com.kursivee.urbandictionary.search.domain.repository.AutoCompleteRepository
+import javax.inject.Inject
 
-class AutoCompleteRepositoryImpl(
+class AutoCompleteRepositoryImpl @Inject constructor(
     private val autoCompleteRemoteSource: AutoCompleteRemoteSource
 ) : AutoCompleteRepository {
 

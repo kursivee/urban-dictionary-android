@@ -33,7 +33,7 @@ class SearchViewModelTest {
     @Before
     fun before() {
         getAutoCompleteResults = mockk()
-        searchViewModel = SearchViewModel(getAutoCompleteResults)
+        searchViewModel = SearchViewModel(getAutoCompleteResults, mockk())
     }
 
     @Test
