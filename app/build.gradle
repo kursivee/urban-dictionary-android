@@ -75,4 +75,7 @@ dependencies {
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_android_version"
     kapt "androidx.hilt:hilt-compiler:$hilt_version"
+
+    // Leak canary
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:$leak_canary_version"
 }

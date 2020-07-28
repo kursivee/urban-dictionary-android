@@ -13,6 +13,7 @@ buildscript {
     ext.hilt_version = "1.0.0-alpha02"
     ext.fragment_ktx_version = "1.2.5"
     ext.lifecycle_version = "2.2.0"
+    ext.leak_canary_version = "2.4"
     repositories {
         google()
         jcenter()

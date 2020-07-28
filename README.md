@@ -18,6 +18,7 @@ Utilizes urban dictionary API to lookup word definitions
 
 ### Utility
 - [arrow-kt](https://github.com/arrow-kt/arrow) - Functional companion to kotlin std lib. But only using it for Either :D
+- [Leak Canary](https://square.github.io/leakcanary/) - Memory leak detection library
 
 ### Code Analysis
 - [ktlint](https://github.com/pinterest/ktlint) - kotlin linter
