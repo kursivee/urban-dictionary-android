@@ -9,6 +9,7 @@ Utilizes urban dictionary API to lookup word definitions
 - [Diff Util](https://developer.android.com/reference/androidx/recyclerview/widget/DiffUtil) - Utility class that effeciently calculates differences between two lists
 - [Spannable String Builder](https://developer.android.com/reference/android/text/SpannableStringBuilder) - Convenience builder for spannable
 - [Search View](https://developer.android.com/training/search/setup) - Adds search interface in app bar
+- [Hilt](https://dagger.dev/hilt/) - Dependency Injection library based on dagger
 
 ### Networking
 - [Retrofit](https://square.github.io/retrofit/) - Rest Client

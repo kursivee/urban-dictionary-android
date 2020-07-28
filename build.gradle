@@ -9,6 +9,10 @@ buildscript {
     ext.ok_http_version = "4.8.0"
     ext.moshi_converter_version = "2.9.0"
     ext.core_testing = "2.1.0"
+    ext.hilt_android_version = "2.28-alpha"
+    ext.hilt_version = "1.0.0-alpha02"
+    ext.fragment_ktx_version = "1.2.5"
+    ext.lifecycle_version = "2.2.0"
     repositories {
         google()
         jcenter()
@@ -20,6 +24,7 @@ buildscript {
         classpath "com.android.tools.build:gradle:4.2.0-alpha05"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jlleitschuh.gradle:ktlint-gradle:$ktlint_gradle_version"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_android_version"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
