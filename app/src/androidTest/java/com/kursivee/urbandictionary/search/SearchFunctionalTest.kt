@@ -1,8 +1,10 @@
 package com.kursivee.urbandictionary.search
 
+import android.view.KeyEvent
 import android.widget.AutoCompleteTextView
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.pressKey
 import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom
 import androidx.test.espresso.matcher.ViewMatchers.withId
@@ -94,5 +96,27 @@ class SearchFunctionalTest {
         // Using Thread.sleep here because I couldn't get IdlingResource working with debouncer
         Thread.sleep(SearchFragment.DEBOUNCE_DELAY + 100L)
         onView(withId(R.id.rv_autocomplete)).check(RecyclerViewItemCountAssertion(not(0)))
+    }
+    @Test
+    fun test_hasSearchInputThenClear() {
+        val file = InstrumentationRegistry.getInstrumentation().context.assets.open("AutoCompleteResultResponse.json")
+        val s = IOUtil.readLines(file).joinToString("\n")
+        val mockResponse = MockResponse()
+            .setResponseCode(200)
+            .setBody(s)
+        mockWebServer.enqueue(mockResponse)
+        mockWebServer.enqueue(mockResponse)
+        onView(withId(R.id.search_menu)).perform(click())
+        onView(isAssignableFrom(AutoCompleteTextView::class.java))
+            .perform(typeText("a"))
+        Thread.sleep(SearchFragment.DEBOUNCE_DELAY + 100L)
+        onView(isAssignableFrom(AutoCompleteTextView::class.java)).perform(pressKey(KeyEvent.KEYCODE_DEL))
+        Thread.sleep(SearchFragment.DEBOUNCE_DELAY + 100L)
+        onView(withId(R.id.rv_autocomplete)).check(RecyclerViewItemCountAssertion(`is`(0)))
+        onView(isAssignableFrom(AutoCompleteTextView::class.java))
+            .perform(typeText("a"))
+        Thread.sleep(SearchFragment.DEBOUNCE_DELAY + 100L)
+        onView(withId(R.id.search_close_btn)).perform(click())
+        Thread.sleep(SearchFragment.DEBOUNCE_DELAY + 100L)
     }
 }

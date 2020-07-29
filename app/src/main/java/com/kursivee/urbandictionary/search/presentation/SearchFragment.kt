@@ -72,11 +72,7 @@ class SearchFragment : Fragment() {
     }
 
     private fun SearchView.init() {
-        val onQueryTextChange = debounce<String>(DEBOUNCE_DELAY, viewLifecycleOwner.lifecycleScope) { input, job ->
-            if (input.isBlank()) {
-                job.cancel()
-                return@debounce
-            }
+        val onQueryTextChange = debounce<String>(DEBOUNCE_DELAY, viewLifecycleOwner.lifecycleScope) { input ->
             vm.getAutoCompleteResults(input)
         }
         setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -86,8 +82,7 @@ class SearchFragment : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                if (newText.isNullOrBlank()) return true
-                onQueryTextChange(newText)
+                onQueryTextChange(newText ?: "")
                 return true
             }
         })
