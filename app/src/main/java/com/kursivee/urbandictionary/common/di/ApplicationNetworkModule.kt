@@ -5,6 +5,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import javax.inject.Singleton
 
@@ -13,9 +14,16 @@ import javax.inject.Singleton
 class ApplicationNetworkModule {
     @Provides
     @Singleton
-    fun provideRetrofit(): Retrofit {
+    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return HttpClientProvider.provideRetrofit(
-            "https://api.urbandictionary.com/"
+            "https://api.urbandictionary.com/",
+            okHttpClient
         )
+    }
+
+    @Provides
+    @Singleton
+    fun provideOkHttpClient(): OkHttpClient {
+        return HttpClientProvider.provideOkHttpClient()
     }
 }

@@ -15,7 +15,10 @@ import java.io.File
 class AutoCompleteApiTest {
 
     private val mockWebServer = MockWebServer()
-    private val retrofit = HttpClientProvider.provideRetrofit(mockWebServer.url("/").toString())
+    private val retrofit = HttpClientProvider.provideRetrofit(
+        mockWebServer.url("/").toString(),
+        HttpClientProvider.provideOkHttpClient()
+    )
     private lateinit var autoCompleteApi: AutoCompleteApi
 
     @Before

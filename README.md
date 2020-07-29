@@ -34,3 +34,5 @@ Auto ktlint with `./gradlew ktlintFormat`
 - [kotlinx-coroutines-test](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-test/) - used for `runBlockingTest`
 - [MockK](https://mockk.io/) - Kotlin mocking library
 - [MockWebServer](https://github.com/square/okhttp/tree/master/mockwebserver) - webserver for unit testing retrofit
+- [Espresso](https://developer.android.com/training/testing/espresso) - integration testing library
+- [Espresso with Hilt](https://developer.android.com/training/dependency-injection/hilt-testing) - espresso with hilt support

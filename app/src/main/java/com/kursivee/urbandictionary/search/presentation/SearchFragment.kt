@@ -27,7 +27,7 @@ class SearchFragment : Fragment() {
     companion object {
         fun newInstance() =
             SearchFragment()
-        private const val DEBOUNCE_DELAY = 500L
+        const val DEBOUNCE_DELAY = 500L
     }
 
     private val vm: SearchViewModel by viewModels()
