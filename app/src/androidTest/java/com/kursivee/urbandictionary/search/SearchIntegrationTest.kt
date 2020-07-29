@@ -38,7 +38,7 @@ import javax.inject.Singleton
 
 @HiltAndroidTest
 @UninstallModules(ApplicationNetworkModule::class)
-class SearchFunctionalTest {
+class SearchIntegrationTest {
 
     @Module
     @InstallIn(ApplicationComponent::class)
