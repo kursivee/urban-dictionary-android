@@ -32,7 +32,7 @@ class SearchFragment : Fragment() {
     }
 
     private val vm: SearchViewModel by viewModels()
-    private lateinit var autoCompleteResultsAdapter: AutoCompleteResultsAdapter
+    private var autoCompleteResultsAdapter: AutoCompleteResultsAdapter? = null
 
     private var nullableBinding: SearchFragmentBinding? = null
     private val binding: SearchFragmentBinding
@@ -62,6 +62,7 @@ class SearchFragment : Fragment() {
 
     override fun onDestroyView() {
         nullableBinding = null
+        autoCompleteResultsAdapter = null
         super.onDestroyView()
     }
 
@@ -93,6 +94,6 @@ class SearchFragment : Fragment() {
     }
 
     private fun render(state: SearchState) {
-        autoCompleteResultsAdapter.submitList(state.autoCompleteResults)
+        requireNotNull(autoCompleteResultsAdapter).submitList(state.autoCompleteResults)
     }
 }
