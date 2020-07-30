@@ -5,6 +5,7 @@ plugins {
     id 'org.jlleitschuh.gradle.ktlint'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
@@ -85,4 +86,8 @@ dependencies {
 
     // Leak canary
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$leak_canary_version"
+
+    // navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 }

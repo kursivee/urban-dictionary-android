@@ -15,6 +15,7 @@ buildscript {
     ext.lifecycle_version = "2.2.0"
     ext.leak_canary_version = "2.4"
     ext.espresso_version = "3.2.0"
+    ext.nav_version = "2.3.0"
     repositories {
         google()
         jcenter()
@@ -27,6 +28,7 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jlleitschuh.gradle:ktlint-gradle:$ktlint_gradle_version"
         classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_android_version"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }

@@ -10,6 +10,8 @@ Utilizes urban dictionary API to lookup word definitions
 - [Spannable String Builder](https://developer.android.com/reference/android/text/SpannableStringBuilder) - Convenience builder for spannable
 - [Search View](https://developer.android.com/training/search/setup) - Adds search interface in app bar
 - [Hilt](https://dagger.dev/hilt/) - Dependency Injection library based on dagger
+- [Jetpack Navigation](https://developer.android.com/guide/navigation/navigation-getting-started) - Navigation library
+- [SafeArgs](https://developer.android.com/guide/navigation/navigation-getting-started#ensure_type-safety_by_using_safe_args) - Type safe navigation
 
 ### Networking
 - [Retrofit](https://square.github.io/retrofit/) - Rest Client

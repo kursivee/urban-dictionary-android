@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -65,7 +66,9 @@ class SearchFragment : Fragment() {
     }
 
     private fun RecyclerView.init() {
-        autoCompleteResultsAdapter = AutoCompleteResultsAdapter()
+        autoCompleteResultsAdapter = AutoCompleteResultsAdapter {
+            findNavController().navigate(R.id.action_searchFragment_to_resultsFragment)
+        }
         adapter = autoCompleteResultsAdapter
         layoutManager = LinearLayoutManager(requireContext())
         addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
