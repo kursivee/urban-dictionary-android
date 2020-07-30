@@ -22,5 +22,8 @@
         <argument
             android:name="term"
             app:argType="string" />
+        <action
+            android:id="@+id/action_resultsFragment_self"
+            app:destination="@id/resultsFragment" />
     </fragment>
 </navigation>

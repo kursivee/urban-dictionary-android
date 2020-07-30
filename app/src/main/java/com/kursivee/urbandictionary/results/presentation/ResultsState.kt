@@ -8,5 +8,5 @@ data class ResultsState(
 )
 
 sealed class ResultsEvent {
-    class ErrorEvent(private val error: ErrorEntity) : ResultsEvent()
+    class ErrorEvent(val error: ErrorEntity) : ResultsEvent()
 }

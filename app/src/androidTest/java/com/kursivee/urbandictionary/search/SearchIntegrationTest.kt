@@ -7,11 +7,9 @@ import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.pressKey
 import androidx.test.espresso.action.ViewActions.typeText
-import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom
 import androidx.test.espresso.matcher.ViewMatchers.withId
-import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.platform.app.InstrumentationRegistry
 import com.kursivee.urbandictionary.MainActivity
@@ -146,6 +144,6 @@ class SearchIntegrationTest {
         Thread.sleep(SearchFragment.DEBOUNCE_DELAY + 200L)
         onView(withId(R.id.rv_autocomplete))
             .perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
-        onView(withId(R.id.tv_txt)).check(matches(not(withText(""))))
+        onView(withId(R.id.rv_results)).check(RecyclerViewItemCountAssertion(not(0)))
     }
 }

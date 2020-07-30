@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <TextView
+        android:id="@+id/tv_word"
+        style="@style/TextAppearance.MaterialComponents.Headline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Awe" />
+
+    <TextView
+        android:id="@+id/tv_definition"
+        style="@style/TextAppearance.MaterialComponents.Body2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_word"
+        tools:text="When you see, hear, read, etc., something cute or adorable. Very likely to be used by girls in text messages, and in conversations in general. Can also be used if they don't know what to say. As in Awe okay" />
+
+    <TextView
+        android:id="@+id/tv_author"
+        style="@style/TextAppearance.MaterialComponents.Subtitle2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_example"
+        tools:text="by Kakashisan21 March 06, 2019" />
+
+    <TextView
+        android:id="@+id/tv_example"
+        style="@style/TextAppearance.MaterialComponents.Body2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_definition"
+        tools:text="Boyfriend: I'm still tired from earlier, like really tired bae Girlfriend: Aweebae, sounds like you needa take a nap" />
+
+    <TextView
+        android:id="@+id/tv_upvote"
+        style="@style/TextAppearance.MaterialComponents.Caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:paddingBottom="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_author"
+        android:drawableStart="@drawable/ic_thumbs_up"
+        android:drawableTint="@color/black"
+        android:drawablePadding="4dp"
+        android:gravity="center"
+        tools:text="120" />
+
+    <TextView
+        android:id="@+id/tv_downvote"
+        style="@style/TextAppearance.MaterialComponents.Caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toEndOf="@+id/tv_upvote"
+        app:layout_constraintTop_toBottomOf="@+id/tv_author"
+        android:drawableStart="@drawable/ic_thumbs_down"
+        android:drawableTint="@color/black"
+        android:drawablePadding="4dp"
+        android:gravity="center"
+        tools:text="23" />
+</androidx.constraintlayout.widget.ConstraintLayout>
