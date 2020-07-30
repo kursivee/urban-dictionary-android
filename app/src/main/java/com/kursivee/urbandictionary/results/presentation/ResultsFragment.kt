@@ -74,7 +74,11 @@ class ResultsFragment : Fragment() {
         layoutManager = LinearLayoutManager(requireContext())
         addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
         binding.srlResults.setOnRefreshListener {
-            vm.getResults(requireNotNull(args.term), true)
+            args.term?.let { term ->
+                vm.getResults(term, true)
+            } ?: run {
+                binding.srlResults.isRefreshing = false
+            }
         }
     }
 
