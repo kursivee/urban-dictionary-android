@@ -42,7 +42,6 @@ class ResultsFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         binding.rvResults.init()
-        vm.getResults(args.term)
         vm.state.observe(viewLifecycleOwner, Observer(::render))
         vm.singleEventState.observe(viewLifecycleOwner, Observer(::onSingleEvent))
     }
@@ -62,7 +61,7 @@ class ResultsFragment : Fragment() {
         layoutManager = LinearLayoutManager(requireContext())
         addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
         binding.srlResults.setOnRefreshListener {
-            vm.getResults(args.term)
+            vm.getResults(args.term, true)
         }
     }
 
@@ -75,8 +74,15 @@ class ResultsFragment : Fragment() {
             when (event) {
                 is ResultsEvent.ErrorEvent ->
                     Toast.makeText(requireContext(), event.error.id.name, Toast.LENGTH_SHORT).show()
-                is ResultsEvent.FetchCompleteEvent ->
+                is ResultsEvent.FetchCompleteEvent -> {
                     binding.srlResults.isRefreshing = false
+                    binding.pbLoader.visibility = View.GONE
+                }
+                is ResultsEvent.FetchStartEvent ->
+                    binding.pbLoader.visibility = View.VISIBLE
+                is ResultsEvent.InitializeEvent -> {
+                    vm.getResults(args.term)
+                }
             }
         }
     }

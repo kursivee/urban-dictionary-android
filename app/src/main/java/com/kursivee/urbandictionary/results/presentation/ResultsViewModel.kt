@@ -19,20 +19,25 @@ class ResultsViewModel @ViewModelInject constructor(
     private val mutableState = MutableLiveData<ResultsState>(ResultsState())
     val state: LiveData<ResultsState> = mutableState
 
-    private val mutableSingleEventState = MutableLiveData<SingleEvent<ResultsEvent>>()
+    private val mutableSingleEventState = MutableLiveData<SingleEvent<ResultsEvent>>(
+        SingleEvent(ResultsEvent.InitializeEvent)
+    )
     val singleEventState: LiveData<SingleEvent<ResultsEvent>> = mutableSingleEventState
 
-    fun getResults(term: String) {
+    fun getResults(term: String, isRefresh: Boolean = false) {
         viewModelScope.launch {
+            if (!isRefresh) {
+                mutableSingleEventState.value = SingleEvent(ResultsEvent.FetchStartEvent)
+            }
             getResultsUseCase(term).fold(
                 { error ->
                     mutableSingleEventState.value = SingleEvent(ResultsEvent.ErrorEvent(error))
                 },
                 { results ->
                     mutableState.value = state.value?.copy(results = results)
-                    mutableSingleEventState.value = SingleEvent(ResultsEvent.FetchCompleteEvent)
                 }
             )
+            mutableSingleEventState.value = SingleEvent(ResultsEvent.FetchCompleteEvent)
         }
     }
 }
