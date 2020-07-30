@@ -8,6 +8,7 @@ import com.kursivee.urbandictionary.common.network.entity.ErrorEntity
 import com.kursivee.urbandictionary.search.data.source.dto.GetAutoCompleteResultsResponse
 import com.kursivee.urbandictionary.search.domain.entity.AutoCompleteResult
 import retrofit2.Response
+import timber.log.Timber
 
 fun Response<GetAutoCompleteResultsResponse>.toNetworkResponse(): NetworkResponse<List<AutoCompleteResult>> {
     return if (isSuccessful) {
@@ -23,6 +24,7 @@ fun Response<GetAutoCompleteResultsResponse>.toNetworkResponse(): NetworkRespons
             Either.failure(ErrorEntity())
         }
     } else {
+        Timber.e(errorBody()?.string())
         Either.failure(ErrorEntity())
     }
 }

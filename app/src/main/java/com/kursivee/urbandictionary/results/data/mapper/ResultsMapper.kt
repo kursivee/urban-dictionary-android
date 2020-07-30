@@ -8,6 +8,7 @@ import com.kursivee.urbandictionary.common.network.entity.ErrorEntity
 import com.kursivee.urbandictionary.results.data.source.dto.GetResultsResponse
 import com.kursivee.urbandictionary.results.domain.entity.ResultEntity
 import retrofit2.Response
+import timber.log.Timber
 
 fun Response<GetResultsResponse>.toNetworkResponse(): NetworkResponse<List<ResultEntity>> {
     return if (isSuccessful) {
@@ -29,6 +30,7 @@ fun Response<GetResultsResponse>.toNetworkResponse(): NetworkResponse<List<Resul
             Either.failure(ErrorEntity())
         }
     } else {
+        Timber.e(errorBody()?.string())
         Either.failure(ErrorEntity())
     }
 }
