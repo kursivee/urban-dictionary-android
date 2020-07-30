@@ -66,8 +66,9 @@ class SearchFragment : Fragment() {
     }
 
     private fun RecyclerView.init() {
-        autoCompleteResultsAdapter = AutoCompleteResultsAdapter {
-            findNavController().navigate(R.id.action_searchFragment_to_resultsFragment)
+        autoCompleteResultsAdapter = AutoCompleteResultsAdapter { term ->
+            val action = SearchFragmentDirections.actionSearchFragmentToResultsFragment(term)
+            findNavController().navigate(action)
         }
         adapter = autoCompleteResultsAdapter
         layoutManager = LinearLayoutManager(requireContext())

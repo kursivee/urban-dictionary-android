@@ -16,7 +16,11 @@
     </fragment>
     <fragment
         android:id="@+id/resultsFragment"
-        android:name="com.kursivee.urbandictionary.results.ResultsFragment"
+        android:name="com.kursivee.urbandictionary.results.presentation.ResultsFragment"
         android:label="results_fragment"
-        tools:layout="@layout/results_fragment" />
+        tools:layout="@layout/results_fragment" >
+        <argument
+            android:name="term"
+            app:argType="string" />
+    </fragment>
 </navigation>

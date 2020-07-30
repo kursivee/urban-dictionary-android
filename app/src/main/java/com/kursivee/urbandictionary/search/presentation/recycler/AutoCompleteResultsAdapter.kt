@@ -7,7 +7,7 @@ import com.kursivee.urbandictionary.databinding.AutoCompleteResultItemBinding
 import com.kursivee.urbandictionary.search.domain.entity.AutoCompleteResult
 
 class AutoCompleteResultsAdapter(
-    private val onClick: () -> Unit
+    private val onClick: (String) -> Unit
 ) : ListAdapter<AutoCompleteResult, AutoCompleteResultsViewHolder>(
     AutoCompleteResultsDiffCallback
 ) {
