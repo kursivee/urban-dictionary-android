@@ -80,11 +80,6 @@ class SearchIntegrationTest {
     }
 
     @Test
-    fun test_noSearchInput() {
-        onView(withId(R.id.rv_autocomplete)).check(RecyclerViewItemCountAssertion(`is`(0)))
-    }
-
-    @Test
     fun test_hasSearchInput() {
         val file = InstrumentationRegistry.getInstrumentation().context.assets.open("AutoCompleteResultResponse.json")
         val s = IOUtil.readLines(file).joinToString("\n")

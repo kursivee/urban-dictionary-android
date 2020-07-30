@@ -2,6 +2,8 @@ package com.kursivee.urbandictionary.results.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
@@ -13,6 +15,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.kursivee.urbandictionary.R
 import com.kursivee.urbandictionary.common.view.SingleEvent
 import com.kursivee.urbandictionary.databinding.ResultsFragmentBinding
 import com.kursivee.urbandictionary.results.presentation.recyclerview.ResultsAdapter
@@ -35,6 +38,7 @@ class ResultsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        setHasOptionsMenu(true)
         nullableBinding = ResultsFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -44,6 +48,15 @@ class ResultsFragment : Fragment() {
         binding.rvResults.init()
         vm.state.observe(viewLifecycleOwner, Observer(::render))
         vm.singleEventState.observe(viewLifecycleOwner, Observer(::onSingleEvent))
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.results_options_menu, menu)
+        menu.findItem(R.id.search_menu).setOnMenuItemClickListener {
+            findNavController().navigate(R.id.action_resultsFragment_to_searchFragment)
+            true
+        }
     }
 
     override fun onDestroyView() {
@@ -61,7 +74,7 @@ class ResultsFragment : Fragment() {
         layoutManager = LinearLayoutManager(requireContext())
         addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
         binding.srlResults.setOnRefreshListener {
-            vm.getResults(args.term, true)
+            vm.getResults(requireNotNull(args.term), true)
         }
     }
 
@@ -81,7 +94,9 @@ class ResultsFragment : Fragment() {
                 is ResultsEvent.FetchStartEvent ->
                     binding.pbLoader.visibility = View.VISIBLE
                 is ResultsEvent.InitializeEvent -> {
-                    vm.getResults(args.term)
+                    args.term?.let { term ->
+                        vm.getResults(term)
+                    }
                 }
             }
         }
