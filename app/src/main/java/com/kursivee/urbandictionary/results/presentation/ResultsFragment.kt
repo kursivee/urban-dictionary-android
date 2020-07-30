@@ -36,9 +36,9 @@ class ResultsFragment : Fragment() {
         vm.state.observe(viewLifecycleOwner, Observer(::render))
     }
 
-    override fun onDestroy() {
+    override fun onDestroyView() {
         nullableBinding = null
-        super.onDestroy()
+        super.onDestroyView()
     }
 
     private fun render(resultsState: ResultsState) {

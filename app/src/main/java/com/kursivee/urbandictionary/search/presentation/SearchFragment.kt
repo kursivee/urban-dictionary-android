@@ -60,9 +60,9 @@ class SearchFragment : Fragment() {
         (menu.findItem(R.id.search_menu).actionView as SearchView).init()
     }
 
-    override fun onDestroy() {
+    override fun onDestroyView() {
         nullableBinding = null
-        super.onDestroy()
+        super.onDestroyView()
     }
 
     private fun RecyclerView.init() {
