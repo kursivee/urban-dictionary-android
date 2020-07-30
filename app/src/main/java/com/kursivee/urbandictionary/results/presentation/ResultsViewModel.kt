@@ -30,6 +30,7 @@ class ResultsViewModel @ViewModelInject constructor(
                 },
                 { results ->
                     mutableState.value = state.value?.copy(results = results)
+                    mutableSingleEventState.value = SingleEvent(ResultsEvent.FetchCompleteEvent)
                 }
             )
         }

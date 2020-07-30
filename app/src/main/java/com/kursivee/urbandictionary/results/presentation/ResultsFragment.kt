@@ -61,6 +61,9 @@ class ResultsFragment : Fragment() {
         adapter = resultsAdapter
         layoutManager = LinearLayoutManager(requireContext())
         addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
+        binding.srlResults.setOnRefreshListener {
+            vm.getResults(args.term)
+        }
     }
 
     private fun render(resultsState: ResultsState) {
@@ -72,6 +75,8 @@ class ResultsFragment : Fragment() {
             when (event) {
                 is ResultsEvent.ErrorEvent ->
                     Toast.makeText(requireContext(), event.error.id.name, Toast.LENGTH_SHORT).show()
+                is ResultsEvent.FetchCompleteEvent ->
+                    binding.srlResults.isRefreshing = false
             }
         }
     }

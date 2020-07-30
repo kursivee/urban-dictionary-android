@@ -9,4 +9,5 @@ data class ResultsState(
 
 sealed class ResultsEvent {
     class ErrorEvent(val error: ErrorEntity) : ResultsEvent()
+    object FetchCompleteEvent : ResultsEvent()
 }
