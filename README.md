@@ -1,6 +1,8 @@
 # Urban Dictionary App
 Utilizes urban dictionary API to lookup word definitions
 
+![Flow](https://github.com/kursivee/urban-dictionary-android/blob/master/images/flow.gif)
+
 ## Overview
 ### API Calls
 Using the following APIs I found to use instead of https://rapidapi.com/community/api/urban-dictionary. There was more I wanted to do like pagination but didn't have time.
@@ -10,7 +12,12 @@ Using the following APIs I found to use instead of https://rapidapi.com/communit
 
 ### Screens
 - Results Screen - Show results of search term. If on initial screen, show list of random results.
+
+<img src="https://github.com/kursivee/urban-dictionary-android/blob/master/images/random.png" alt="" height="400" /> <img src="https://github.com/kursivee/urban-dictionary-android/blob/master/images/noresults.png" alt="" height="400" /> <img src="https://github.com/kursivee/urban-dictionary-android/blob/master/images/sort.png" alt="" height="400" />
+
 - Search Screen - Allow users to input a search term. Hits autocomplete API to get a list of potential search terms.
+
+<img src="https://github.com/kursivee/urban-dictionary-android/blob/master/images/autocomplete.png" alt="" height="400" />
 
 ## Technology
 ### Presentation
