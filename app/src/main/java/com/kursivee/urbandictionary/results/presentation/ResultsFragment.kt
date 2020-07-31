@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.kursivee.urbandictionary.R
+import com.kursivee.urbandictionary.common.network.entity.ErrorId
 import com.kursivee.urbandictionary.common.view.SingleEvent
 import com.kursivee.urbandictionary.common.view.recyclerview.EmptyListAdapter
 import com.kursivee.urbandictionary.databinding.ResultsFragmentBinding
@@ -110,8 +111,11 @@ class ResultsFragment : Fragment() {
     private fun onSingleEvent(singleEvent: SingleEvent<ResultsEvent>) {
         singleEvent.getContentIfNotHandled()?.let { event ->
             when (event) {
-                is ResultsEvent.ErrorEvent ->
-                    Toast.makeText(requireContext(), event.error.id.name, Toast.LENGTH_SHORT).show()
+                is ResultsEvent.ErrorEvent -> {
+                    if (event.error.id == ErrorId.GENERIC) {
+                        Toast.makeText(requireContext(), event.error.id.name, Toast.LENGTH_SHORT).show()
+                    }
+                }
                 is ResultsEvent.FetchCompleteEvent -> {
                     binding.srlResults.isRefreshing = false
                     binding.pbLoader.visibility = View.GONE

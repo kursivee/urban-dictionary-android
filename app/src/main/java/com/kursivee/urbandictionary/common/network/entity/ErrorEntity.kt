@@ -1,7 +1,12 @@
 package com.kursivee.urbandictionary.common.network.entity
 
 enum class ErrorId {
-    GENERIC
+    GENERIC,
+    OFFLINE
+}
+
+object ErrorConstants {
+    const val OFFLINE_ERROR_CODE = 3000
 }
 
 /**

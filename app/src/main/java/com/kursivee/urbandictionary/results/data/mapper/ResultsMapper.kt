@@ -4,7 +4,9 @@ import arrow.core.Either
 import com.kursivee.urbandictionary.common.ext.failure
 import com.kursivee.urbandictionary.common.ext.success
 import com.kursivee.urbandictionary.common.network.alias.NetworkResponse
+import com.kursivee.urbandictionary.common.network.entity.ErrorConstants.OFFLINE_ERROR_CODE
 import com.kursivee.urbandictionary.common.network.entity.ErrorEntity
+import com.kursivee.urbandictionary.common.network.entity.ErrorId
 import com.kursivee.urbandictionary.results.data.source.dto.CachedResult
 import com.kursivee.urbandictionary.results.data.source.dto.GetResultsResponse
 import com.kursivee.urbandictionary.results.data.source.dto.Result
@@ -26,7 +28,8 @@ fun Response<GetResultsResponse>.toNetworkResponse(): NetworkResponse<List<Resul
         } ?: Either.failure(ErrorEntity())
     } else {
         Timber.e(errorBody()?.string())
-        Either.failure(ErrorEntity())
+        val id = if (code() == OFFLINE_ERROR_CODE) ErrorId.OFFLINE else ErrorId.GENERIC
+        Either.failure(ErrorEntity(id))
     }
 }
 

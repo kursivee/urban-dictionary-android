@@ -4,7 +4,9 @@ import arrow.core.Either
 import com.kursivee.urbandictionary.common.ext.failure
 import com.kursivee.urbandictionary.common.ext.success
 import com.kursivee.urbandictionary.common.network.alias.NetworkResponse
+import com.kursivee.urbandictionary.common.network.entity.ErrorConstants.OFFLINE_ERROR_CODE
 import com.kursivee.urbandictionary.common.network.entity.ErrorEntity
+import com.kursivee.urbandictionary.common.network.entity.ErrorId
 import com.kursivee.urbandictionary.results.data.mapper.toCachedResults
 import com.kursivee.urbandictionary.results.data.mapper.toNetworkResponse
 import com.kursivee.urbandictionary.results.data.mapper.toResultEntities
@@ -37,7 +39,8 @@ class ResultsRepositoryImpl @Inject constructor(
         } ?: run {
             withContext(Dispatchers.IO) {
                 Timber.e(results.errorBody()?.string())
-                Either.failure(ErrorEntity())
+                val id = if (results.code() == OFFLINE_ERROR_CODE) ErrorId.OFFLINE else ErrorId.GENERIC
+                Either.failure(ErrorEntity(id))
             }
         }
     }
