@@ -7,6 +7,7 @@ import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -57,12 +58,24 @@ class ResultsFragment : Fragment() {
             findNavController().navigate(R.id.action_resultsFragment_to_searchFragment)
             true
         }
+        menu.findItem(R.id.sort_menu).setOnMenuItemClickListener {
+            showSortByDialog()
+            true
+        }
     }
 
     override fun onDestroyView() {
         nullableBinding = null
         resultsAdapter = null
         super.onDestroyView()
+    }
+
+    private fun showSortByDialog() {
+        AlertDialog.Builder(requireActivity())
+            .setTitle(R.string.sort_by)
+            .setItems(R.array.sort_array) { _, which ->
+                vm.sortBy(which)
+            }.show()
     }
 
     private fun RecyclerView.init() {
