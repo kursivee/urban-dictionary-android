@@ -98,4 +98,7 @@ dependencies {
 
     // Timber
     implementation "com.jakewharton.timber:timber:$timber_version"
+
+    // recycler view
+    implementation "androidx.recyclerview:recyclerview:$recycler_view_version"
 }

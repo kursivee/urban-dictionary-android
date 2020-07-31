@@ -4,4 +4,5 @@
     <string name="profile">Profile</string>
     <string name="author">by %1$s on %2$s</string>
     <string name="sort_by">Sort By…</string>
+    <string name="no_results_found_pull_down_to_refresh">No results found. Pull down to refresh.</string>
 </resources>

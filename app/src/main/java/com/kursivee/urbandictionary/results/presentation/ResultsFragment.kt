@@ -13,11 +13,13 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.kursivee.urbandictionary.R
 import com.kursivee.urbandictionary.common.view.SingleEvent
+import com.kursivee.urbandictionary.common.view.recyclerview.EmptyListAdapter
 import com.kursivee.urbandictionary.databinding.ResultsFragmentBinding
 import com.kursivee.urbandictionary.results.presentation.recyclerview.ResultsAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,6 +35,7 @@ class ResultsFragment : Fragment() {
     private val args: ResultsFragmentArgs by navArgs()
 
     private var resultsAdapter: ResultsAdapter? = null
+    private var emptyListAdapter: EmptyListAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -67,6 +70,7 @@ class ResultsFragment : Fragment() {
     override fun onDestroyView() {
         nullableBinding = null
         resultsAdapter = null
+        emptyListAdapter = null
         super.onDestroyView()
     }
 
@@ -83,7 +87,11 @@ class ResultsFragment : Fragment() {
             val action = ResultsFragmentDirections.actionResultsFragmentSelf(term)
             findNavController().navigate(action)
         }
-        adapter = resultsAdapter
+        emptyListAdapter = EmptyListAdapter()
+        adapter = ConcatAdapter(
+            emptyListAdapter,
+            resultsAdapter
+        )
         layoutManager = LinearLayoutManager(requireContext())
         addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
         binding.srlResults.setOnRefreshListener {
@@ -107,6 +115,9 @@ class ResultsFragment : Fragment() {
                 is ResultsEvent.FetchCompleteEvent -> {
                     binding.srlResults.isRefreshing = false
                     binding.pbLoader.visibility = View.GONE
+                    requireNotNull(emptyListAdapter).updateListSize(
+                        vm.state.value!!.results.size
+                    )
                 }
                 is ResultsEvent.FetchStartEvent ->
                     binding.pbLoader.visibility = View.VISIBLE

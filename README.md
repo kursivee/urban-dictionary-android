@@ -7,6 +7,7 @@ Utilizes urban dictionary API to lookup word definitions
 - [List Adapter](https://developer.android.com/reference/kotlin/androidx/recyclerview/widget/ListAdapter) - Convenience wrapper that provides default behavior for item access and counting
 - [Recycler View](https://developer.android.com/reference/kotlin/androidx/recyclerview/widget/RecyclerView) - Displays lists of elements
 - [Swipe Refresh Layout](https://developer.android.com/training/swipe/add-swipe-interface) - Library that supports swipe to refresh on lists
+- [Concat Adapter](https://developer.android.com/reference/androidx/recyclerview/widget/ConcatAdapter) - Easily concat multiple adapters for recycler views
 - [Diff Util](https://developer.android.com/reference/androidx/recyclerview/widget/DiffUtil) - Utility class that effeciently calculates differences between two lists
 - [Spannable String Builder](https://developer.android.com/reference/android/text/SpannableStringBuilder) - Convenience builder for spannable
 - [Search View](https://developer.android.com/training/search/setup) - Adds search interface in app bar
