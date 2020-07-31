@@ -4,6 +4,9 @@ Utilizes urban dictionary API to lookup word definitions
 ![Flow](https://github.com/kursivee/urban-dictionary-android/blob/master/images/flow.gif)
 
 ## Overview
+### Architecture
+This project follows [Clean Architecture](https://proandroiddev.com/kotlin-clean-architecture-1ad42fcd97fa)and MVVM
+
 ### API Calls
 Using the following APIs I found to use instead of https://rapidapi.com/community/api/urban-dictionary. There was more I wanted to do like pagination but didn't have time.
 - https://api.urbandictionary.com/v0/autocomplete-extra?term={term}
@@ -19,6 +22,9 @@ Using the following APIs I found to use instead of https://rapidapi.com/communit
 
 <img src="https://github.com/kursivee/urban-dictionary-android/blob/master/images/autocomplete.png" alt="" height="400" />
 
+### Persistence
+Only calls to the https://api.urbandictionary.com/v0/define?term={term} endpoint are cached. This allows you to lookup previous search terms even when offline. There is no expiry time in this implementation.
+
 ## Technology
 ### Presentation
 - [View Binding](https://developer.android.com/topic/libraries/view-binding) - generates binding classes which hold reference to XML id'd elements
@@ -32,6 +38,8 @@ Using the following APIs I found to use instead of https://rapidapi.com/communit
 - [Hilt](https://dagger.dev/hilt/) - Dependency Injection library based on dagger
 - [Jetpack Navigation](https://developer.android.com/guide/navigation/navigation-getting-started) - Navigation library
 - [SafeArgs](https://developer.android.com/guide/navigation/navigation-getting-started#ensure_type-safety_by_using_safe_args) - Type safe navigation
+
+### Persistence
 - [Room](https://developer.android.com/topic/libraries/architecture/room) - SQLite abstraction library
 
 ### Networking
