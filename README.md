@@ -1,6 +1,17 @@
 # Urban Dictionary App
 Utilizes urban dictionary API to lookup word definitions
 
+## Overview
+### API Calls
+Using the following APIs I found to use instead of https://rapidapi.com/community/api/urban-dictionary. There was more I wanted to do like pagination but didn't have time.
+- https://api.urbandictionary.com/v0/autocomplete-extra?term={term}
+- https://api.urbandictionary.com/v0/define?term={term}
+- https://api.urbandictionary.com/v0/random
+
+### Screens
+- Results Screen - Show results of search term. If on initial screen, show list of random results.
+- Search Screen - Allow users to input a search term. Hits autocomplete API to get a list of potential search terms.
+
 ## Technology
 ### Presentation
 - [View Binding](https://developer.android.com/topic/libraries/view-binding) - generates binding classes which hold reference to XML id'd elements
