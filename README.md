@@ -5,7 +5,7 @@ Utilizes urban dictionary API to lookup word definitions
 
 ## Overview
 ### Architecture
-This project follows [Clean Architecture](https://proandroiddev.com/kotlin-clean-architecture-1ad42fcd97fa)and MVVM
+This project follows [Clean Architecture](https://proandroiddev.com/kotlin-clean-architecture-1ad42fcd97fa) and MVVM
 
 ### API Calls
 Using the following APIs I found to use instead of https://rapidapi.com/community/api/urban-dictionary. There was more I wanted to do like pagination but didn't have time.
@@ -68,3 +68,4 @@ Auto ktlint with `./gradlew ktlintFormat`
 - [MockWebServer](https://github.com/square/okhttp/tree/master/mockwebserver) - webserver for unit testing retrofit
 - [Espresso](https://developer.android.com/training/testing/espresso) - integration testing library
 - [Espresso with Hilt](https://developer.android.com/training/dependency-injection/hilt-testing) - espresso with hilt support
+- [Firebase Robo Test](https://firebase.google.com/docs/test-lab/android/robo-ux-test#scripting) - Testing tool that automatically simulates user activity
