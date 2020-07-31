@@ -19,6 +19,7 @@ buildscript {
     ext.timber_version = "4.7.1"
     ext.swipe_refresh_version = "1.1.0"
     ext.recycler_view_version = "1.2.0-alpha05"
+    ext.room_version = "2.2.5"
     repositories {
         google()
         jcenter()
