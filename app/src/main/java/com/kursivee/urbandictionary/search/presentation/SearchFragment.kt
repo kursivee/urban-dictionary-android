@@ -98,6 +98,10 @@ class SearchFragment : Fragment() {
         }
         setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
+                query?.let { term ->
+                    val action = SearchFragmentDirections.actionSearchFragmentToResultsFragment(term)
+                    this@SearchFragment.findNavController().navigate(action)
+                }
                 return true
             }
 
