@@ -13,4 +13,8 @@ class ResultsRepositoryImpl @Inject constructor(
     override suspend fun getResults(term: String): NetworkResponse<List<ResultEntity>> {
         return getResultsRemoteSource.getResults(term).toNetworkResponse()
     }
+
+    override suspend fun getRandomResults(): NetworkResponse<List<ResultEntity>> {
+        return getResultsRemoteSource.getRandomResults().toNetworkResponse()
+    }
 }

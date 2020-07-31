@@ -9,11 +9,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kursivee.urbandictionary.common.view.SingleEvent
 import com.kursivee.urbandictionary.results.domain.entity.ResultEntity
+import com.kursivee.urbandictionary.results.domain.usecase.GetRandomResults
 import com.kursivee.urbandictionary.results.domain.usecase.GetResults
 import kotlinx.coroutines.launch
 
 class ResultsViewModel @ViewModelInject constructor(
     private val getResultsUseCase: GetResults,
+    private val getRandomResultsUseCase: GetRandomResults,
     @Assisted savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
@@ -31,6 +33,25 @@ class ResultsViewModel @ViewModelInject constructor(
                 mutableSingleEventState.value = SingleEvent(ResultsEvent.FetchStartEvent)
             }
             getResultsUseCase(term).fold(
+                { error ->
+                    mutableSingleEventState.value = SingleEvent(ResultsEvent.ErrorEvent(error))
+                },
+                { results ->
+                    mutableState.value = state.value?.copy(
+                        results = results.sort(state.value?.sortType ?: SortType.THUMBS_UP)
+                    )
+                }
+            )
+            mutableSingleEventState.value = SingleEvent(ResultsEvent.FetchCompleteEvent)
+        }
+    }
+
+    fun getRandomResults(isRefresh: Boolean = false) {
+        viewModelScope.launch {
+            if (!isRefresh) {
+                mutableSingleEventState.value = SingleEvent(ResultsEvent.FetchStartEvent)
+            }
+            getRandomResultsUseCase().fold(
                 { error ->
                     mutableSingleEventState.value = SingleEvent(ResultsEvent.ErrorEvent(error))
                 },

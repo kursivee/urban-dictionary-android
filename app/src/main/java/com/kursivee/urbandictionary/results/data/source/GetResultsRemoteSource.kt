@@ -12,4 +12,8 @@ class GetResultsRemoteSource @Inject constructor(
     suspend fun getResults(term: String): Response<GetResultsResponse> {
         return getResultsApi.getResults(term)
     }
+
+    suspend fun getRandomResults(): Response<GetResultsResponse> {
+        return getResultsApi.getRandomResults()
+    }
 }

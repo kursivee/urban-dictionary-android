@@ -81,6 +81,12 @@ class SearchIntegrationTest {
 
     @Test
     fun test_hasSearchInput() {
+        val resultsResponse = InstrumentationRegistry.getInstrumentation().context.assets.open("GetResultsResponse.json")
+        val resultsResponseString = IOUtil.readLines(resultsResponse).joinToString("\n")
+        val mockResultsResponse = MockResponse()
+            .setResponseCode(200)
+            .setBody(resultsResponseString)
+        mockWebServer.enqueue(mockResultsResponse)
         val file = InstrumentationRegistry.getInstrumentation().context.assets.open("AutoCompleteResultResponse.json")
         val s = IOUtil.readLines(file).joinToString("\n")
         val mockResponse = MockResponse()
@@ -98,6 +104,12 @@ class SearchIntegrationTest {
 
     @Test
     fun test_hasSearchInputThenClear() {
+        val resultsResponse = InstrumentationRegistry.getInstrumentation().context.assets.open("GetResultsResponse.json")
+        val resultsResponseString = IOUtil.readLines(resultsResponse).joinToString("\n")
+        val mockResultsResponse = MockResponse()
+            .setResponseCode(200)
+            .setBody(resultsResponseString)
+        mockWebServer.enqueue(mockResultsResponse)
         val file = InstrumentationRegistry.getInstrumentation().context.assets.open("AutoCompleteResultResponse.json")
         val s = IOUtil.readLines(file).joinToString("\n")
         val mockResponse = MockResponse()
@@ -128,6 +140,7 @@ class SearchIntegrationTest {
         val mockAutoResponse = MockResponse()
             .setResponseCode(200)
             .setBody(autoResponseString)
+        mockWebServer.enqueue(mockAutoResponse)
         mockWebServer.enqueue(mockAutoResponse)
         val mockResultsResponse = MockResponse()
             .setResponseCode(200)

@@ -98,7 +98,7 @@ class ResultsFragment : Fragment() {
             args.term?.let { term ->
                 vm.getResults(term, true)
             } ?: run {
-                binding.srlResults.isRefreshing = false
+                vm.getRandomResults(true)
             }
         }
     }
@@ -124,6 +124,10 @@ class ResultsFragment : Fragment() {
                 is ResultsEvent.InitializeEvent -> {
                     args.term?.let { term ->
                         vm.getResults(term)
+                    } ?: run {
+                        // Assume null mean first loaded page.
+                        // All subsequent fragment initializations should have args.term defined
+                        vm.getRandomResults()
                     }
                 }
             }
